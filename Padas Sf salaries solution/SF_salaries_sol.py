@@ -57,6 +57,3 @@ print(listed)
 
 
 
-
-
-
