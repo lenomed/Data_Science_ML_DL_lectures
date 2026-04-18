@@ -6,7 +6,7 @@ from numpy.random import randn
 np.random.seed(101)
 
 df = pd.DataFrame(np.random.randn(5,4),["A","B","C","D","E"], ["W","X","Y","Z"])
-print(df)
+print(f" this is the df{df}")
 index_frame = df.W #df["W"] you can still use this to get the column in W
 multi_frames = df[["X","Y","Z"]] # used to print multi frames
 print(multi_frames)

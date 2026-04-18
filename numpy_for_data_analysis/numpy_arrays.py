@@ -37,7 +37,7 @@ print(ranges.reshape(5,5))
 
 ## to locate the index of the max value of numbers in an array you use the argmax(array name)
 
-print(argmax(ranges)) # you can do same with argmin(array name)
+print(f" this is argmax {argmax(ranges)}") # you can do same with argmin(array name)
 
 ### you can check the shape of an array by using shape method
 print(ranges.shape)
