@@ -9,7 +9,7 @@ flights = sns.load_dataset('flights')
 tip_corr = tips.select_dtypes(include='number').corr()
 
 sns.heatmap(tip_corr, annot=True, cmap='coolwarm')
-plt.show()
+plt.show()  
 
 heat_flight = flights.select_dtypes(include='number').corr()
 plt.show()
