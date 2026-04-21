@@ -21,6 +21,6 @@ plt.show()
 print(flights_matrix)
 
 #it uses heirachical clustering to display the clustered values of the data
-
+ 
 sns.clustermap(flights_matrix, standard_scale=1)
 plt.show()
