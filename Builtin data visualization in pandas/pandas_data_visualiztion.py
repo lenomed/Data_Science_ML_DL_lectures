@@ -8,6 +8,7 @@ df1 = pd.read_csv('df1', index_col=0)
 df1['A'].plot(kind='hist')
 plt.show()
 
+
 df2 = pd.read_csv('df2')
 df2.plot(kind='hist')
 df2.plot.area(alpha=0.5)
