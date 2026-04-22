@@ -14,6 +14,7 @@ df2.plot.area(alpha=0.5)
 df2.plot.bar()
 plt.show()
 
+
 df = pd.DataFrame(np.random.randn(1000,2), columns=['a', 'b'])
 df.plot.hexbin(x='a', y='b', gridsize=25)
 plt.show()
