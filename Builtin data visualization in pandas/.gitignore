@@ -1,0 +1,10 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.vsidx
+
+# Python
+__pycache__/
+*.pyc
+.venv/s
