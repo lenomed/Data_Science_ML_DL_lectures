@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
    #      lat        lng  ...                        addr  e
 #0  40.297876 -75.581294  ...      REINDEER CT & DEAD END  1
 #1  40.258061 -75.264680  ...  BRIAR PATH & WHITEMARSH LN  1
-##2  40.121182 -75.351975  ...                    HAWS AVE  1
+##2  40.121182 -75.351975  ...                    HAWS AVE 1
 #3  40.116153 -75.343513  ...          AIRY ST & SWEDE ST  1
 #4  40.251492 -75.603350  ...    CHERRYWOOD CT & DEAD END  1
 
