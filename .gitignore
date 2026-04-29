@@ -3,4 +3,25 @@
 ################################################################################
 
 /.vs
-/my_911_call.csv
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Ignored default folder with query files
+/queries/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+/911.csv
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.vsidx
+
+# Python
+__pycache__/
+*.pyc
+.venv/s
+/Data_Capstone_Project/911.csv
