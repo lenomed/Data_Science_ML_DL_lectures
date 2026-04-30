@@ -82,6 +82,8 @@ returns2 = pd.DataFrame()
 stock_infos = bank_stocks.xs(key='Close', axis=1, level='Stock Info');
 print(f'this is the stock info print out: {stock_infos.head()}')
 stock_infos.plot()
+#fig= px.line(stock_infos, title="Bank Stock close prices") if i'm ploting with plotly
+#fig.show()
 plt.show()
 
 # two ways to do one thing
@@ -92,4 +94,6 @@ plt.show()
 #plt.tight_layout()
 #plt.show()
 
-
+ma_30 = BAC['Close'].loc['2008-01-01':'2009-01-01'].rolling(window=30).mean()
+fig = px.line(ma_30, title='30 d moving average of BAC ')
+fig.show()
