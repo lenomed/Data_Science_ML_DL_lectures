@@ -4,6 +4,10 @@ import numpy as np
 import datetime
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.express as px
+
+
+sns.set_style('whitegrid')
 
 
 start = datetime.datetime(2006, 1, 1)
@@ -71,3 +75,21 @@ for tick in tickers:
 sns.histplot(df3.loc['2015'])
 plt.title='citi group'
 plt.show()
+
+
+returns2 = pd.DataFrame()
+
+stock_infos = bank_stocks.xs(key='Close', axis=1, level='Stock Info');
+print(f'this is the stock info print out: {stock_infos.head()}')
+stock_infos.plot()
+plt.show()
+
+# two ways to do one thing
+
+#for tick in tickers:
+ #    returns2[tick + ' return'] = bank_stocks[tick]['Close'].plot()
+#print(returns.head())
+#plt.tight_layout()
+#plt.show()
+
+
