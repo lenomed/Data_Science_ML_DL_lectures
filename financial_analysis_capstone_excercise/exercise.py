@@ -94,6 +94,19 @@ plt.show()
 #plt.tight_layout()
 #plt.show()
 
+#moving average
+
 ma_30 = BAC['Close'].loc['2008-01-01':'2009-01-01'].rolling(window=30).mean()
-fig = px.line(ma_30, title='30 d moving average of BAC ')
+pure_price = BAC['Close'].loc['2008-01-01':'2009-01-01']
+df_plot = pd.DataFrame({'Normal Price Action': pure_price, '30 d moving average of BAC': ma_30 })
+fig = px.line(df_plot, title='Moving Average of BAC')
+fig.update_layout(width=1200, height=600)
 fig.show()
+
+#creating a heatmap off of the DataFrame 'stock_infos'
+heat_plot = stock_infos.corr()
+sns.heatmap(heat_plot)
+plt.show()
+
+sns.clustermap(heat_plot)
+plt.show()
