@@ -6,7 +6,9 @@ import seaborn as sns
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+
 from sklearn import metrics
+
 
 df= pd.read_csv(r'C:\Users\megam\source\repos\Data_Science_ML_DL_lectures\Machine_Learning\USA_Housing.csv')
 
