@@ -5,7 +5,7 @@ import datetime
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
-
+import plotly.graph_objects as go
 
 sns.set_style('whitegrid')
 
@@ -110,3 +110,19 @@ plt.show()
 
 sns.clustermap(heat_plot)
 plt.show()
+
+fig = px.density_heatmap(stock_infos,color_continuous_scale='Viridis')
+fig.show()
+
+candle_sticks = BAC[['Open','High','Low', 'Close']].loc['2015-01-01':'2016-01-01']
+
+fig= go.Figure(data=[go.Candlestick(
+    x=candle_sticks.index,
+    open=candle_sticks['Open'],
+    high=candle_sticks['High'],
+    low=candle_sticks['Low'],
+    close=candle_sticks['Close']
+    )])
+
+fig.update_layout(title='BAC Candlestick 2015', width=1200, height=600)
+fig.show()
