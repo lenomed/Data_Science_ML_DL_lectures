@@ -34,7 +34,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=.4, random_st
 
 #instanciate the model
 
-knn = KNeighborsClassifier(n_neighbors=27)
+knn = KNeighborsClassifier(n_neighbors=48)
 knn.fit(X_train, y_train)
 
 predictions = knn.predict(X_test)
@@ -46,13 +46,13 @@ print(classification_report(y_test, predictions))
 
 error=[]
 
-for i in range(1,40):
+for i in range(1,60):
     knn = KNeighborsClassifier(n_neighbors=i)
     knn.fit(X_train, y_train)
     new_pred = knn.predict(X_test)
     error.append(np.mean(new_pred != y_test))
 
-plt.plot(range(1,40), error, linestyle='dashed', color='blue', marker='o', markerfacecolor='red', markersize=10)
+plt.plot(range(1,60), error, linestyle='dashed', color='blue', marker='o', markerfacecolor='red', markersize=10)
 plt.title('Error rate vs K Value')
 plt.xlabel('K')
 plt.ylabel('Error rate')
