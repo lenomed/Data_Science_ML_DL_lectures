@@ -1,14 +1,28 @@
 import nltk
 import string
+from numpy import c_
 import pandas as pd
 #nltk.download_shell()
 
 import matplotlib.pyplot as plt
 
+# cleaning
 from email import message
 from nltk.corpus import stopwords
+from pandas.core.indexes import multi
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
+
+#data split
+from sklearn.model_selection import train_test_split
+# models
+from sklearn.naive_bayes import MultinomialNB
+# using pipline
+from sklearn.pipeline import Pipeline
+
+# ###############
+
+from sklearn.metrics import classification_report, confusion_matrix
 
 
 messages = pd.read_csv(r'C:\Users\megam\source\repos\Data_Science_ML_DL_lectures\Machine_Learning\SMSSpamCollection', sep='\t', names=['label', 'message'])
@@ -20,12 +34,12 @@ messages['length']=messages['message'].apply(len)
 print(messages.head(10))
 
 messages['length'].hist(bins=150)
-plt.show()
+#plt.show()
 
 print(messages[messages['length']>900]['message'].iloc[0])
 
 messages.hist(column='length', by='label', bins=60, figsize=(12,4))
-plt.show()
+#plt.show()
 
 # removing punctuations example
 
@@ -76,18 +90,19 @@ messages['message'].apply(text_process)
 #3. Normalize the vectors to unit length, to abstract from the original text length (L2 norm)
 
 c_vect = CountVectorizer(analyzer = text_process).fit(messages['message'])# bag of words transformer
-print(len(c_vect.vocabulary_))
+#print(len(c_vect.vocabulary_))
 
 vect5 = messages['message'][3]
 vect5 = c_vect.transform([vect5])
-print(vect5)
+#print(vect5)
 
-print(c_vect.get_feature_names_out()[4068])
+#print(c_vect.get_feature_names_out()[4068])
 
 message_bow = c_vect.transform(messages['message'])
 
-print('Shape of Sparse Matrix: ', message_bow.shape)
-print('Amount of Non-Zero occurences: ', message_bow.nnz)
+print(f'this is message_bow:\n {message_bow}')
+#print('Shape of Sparse Matrix: ', message_bow.shape)
+#print('Amount of Non-Zero occurences: ', message_bow.nnz)
 
 # checking the sparcity
 sparsity = (100.0 * message_bow.nnz / (message_bow.shape[0] * message_bow.shape[1]))
@@ -96,7 +111,40 @@ print('sparsity: {}'.format(round(sparsity)))
 #TF_IDF
 
 tfidf_transformer = TfidfTransformer()
-tfidf = tfidf_transformer.fit_transform(message_bow)  
-
+tfidf_transformer.fit_transform(message_bow)  
 tfidf5 =tfidf_transformer.transform(vect5)
-print(tfidf5)
+
+#print(f' transformed vect5{tfidf5}')
+
+
+print(tfidf_transformer.idf_[c_vect.vocabulary_['University']])
+print(tfidf_transformer.idf_[c_vect.vocabulary_['U']])
+
+tfidf_mess = tfidf_transformer.fit_transform(message_bow)
+
+# model instaciatiion and training
+
+spam_detect_model = MultinomialNB()
+spam_detect_model.fit(tfidf_mess, messages['label'])
+
+
+
+print(f'this is vect 5 {vect5}')
+print(spam_detect_model.predict(tfidf5)[0]) # type: ignore)
+
+msg_train, msg_test, lbl_train, lbl_test = train_test_split(messages['message'], messages['label'], test_size=.4)
+
+pipeline = Pipeline([
+        ('bow', CountVectorizer(analyzer=text_process)),
+        ('tidif', TfidfTransformer()),
+        ('classifier', MultinomialNB())
+
+    ])
+
+pipeline.fit(msg_train, lbl_train)
+
+predictions = pipeline.predict(msg_test)
+
+print(classification_report(lbl_test, predictions))
+print(confusion_marix(lbl_test, predictions))
+
