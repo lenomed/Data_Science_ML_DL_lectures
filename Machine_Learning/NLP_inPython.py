@@ -146,5 +146,5 @@ pipeline.fit(msg_train, lbl_train)
 predictions = pipeline.predict(msg_test)
 
 print(classification_report(lbl_test, predictions))
-print(confusion_marix(lbl_test, predictions))
+print(confusion_matrix(lbl_test, predictions))
 
