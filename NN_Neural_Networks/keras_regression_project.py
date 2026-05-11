@@ -1,4 +1,3 @@
-from ipywidgets.widgets.widget_controller import Axis
 import numpy as np
 import pandas as pd
 
@@ -42,6 +41,11 @@ print(trim_outliers.sort_values(by='price', ascending=False))
 
 plt.figure(figsize=(12,6))
 
-sns.scatterplot(x='long', y='lat', data=trim_outliers)
+sns.scatterplot(x='long', y='lat', data=trim_outliers,edgecolor='none', alpha=0.2, palette='RdYlGn', hue='price')
 
 plt.show()
+
+# the box plot shows that properties in water front is more costly than the ones on land
+sns.boxplot(x='waterfront', y='price', data=trim_outliers)
+plt.show()
+
